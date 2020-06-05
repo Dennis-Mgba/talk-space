@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('avatar');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable(); // this is so if there is no request value to fill the password field, it's allowed to be empty
             $table->rememberToken();
             $table->timestamps();
         });

@@ -83,7 +83,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="">GitHub</a>
+                    <!-- This authentiate a user if they want to login in using github or facebook -->
+                    <a href="{{ route('social.auth', ['provider' => 'github']) }}">GitHub</a>
+                    <a href="{{ route('social.auth', ['provider' => 'facebook']) }}">Facebook</a>
                 </div>
             </div>
         </div>
