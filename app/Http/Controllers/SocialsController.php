@@ -25,8 +25,8 @@ class SocialsController extends Controller
             $user->email = $details->email;
             $user->name = $details->full_name;
             $user->save();  // save to the application database
-
-            return redirect('/home');
         });
+
+        return redirect('/home');
     }
 }
