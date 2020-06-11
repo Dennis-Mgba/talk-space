@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/discuss', function () {
-    return view();
+    return view('discuss');
 });
 
 Auth::routes();
