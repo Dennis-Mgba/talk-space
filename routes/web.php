@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/discuss', function () {
+    return view();
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -32,5 +36,5 @@ Route::get('/{provider}/redirect', [
 
 
 Route::group(['middleware' => 'auth'], function(){  // create middleware route group to authenticate the routes for our application
-    Route::resource('channels', 'ChannelsController'); // this will automatically read the funetions in the ChannelsController and make avaiable the routes need 
+    Route::resource('channels', 'ChannelsController'); // this will automatically read the funetions in the ChannelsController and make avaiable the routes need
 });
