@@ -23,7 +23,7 @@
         <div class="panel panel-default" style="border-radius: 30px;">
             <div class="panel-body">
                 <p class="">{{ $reply->content }}</p><hr>
-                <img src="{{ $reply->user->avatar }}" alt="{{ $reply->user->name }}" style="width:25px; height:25px; border-radius:50%;"> <!-- avatar of the person that replied -->
+                <img src="{{ $reply->user->avatar }}" alt="{{ $reply->user->name }}" style="width:25px; height:25px; border-radius:30px;"> <!-- avatar of the person that replied -->
                 &nbsp;&nbsp;&nbsp;
                 <span><b>{{ $reply->user->name }},</b> {{ $reply->created_at->diffForHumans() }}</span>
 
@@ -33,5 +33,17 @@
             </div>
         </div>
     @endforeach
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="" action="{{ route('discussion.reply', ['id' => $discussion->id]) }}" method="post">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <textarea name="content" id='reply' rows="3" cols="110" style="border-radius: 8px;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-xs pull-right" style="border-radius: 7px;">Leave a reply</button>
+            </form>
+        </div>
+    </div>
 
 @endsection

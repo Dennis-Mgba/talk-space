@@ -20,7 +20,7 @@ class UserstableSeeder extends Seeder
         ]);
 
         App\User::create([
-            'name' => 'Deni',
+            'name' => 'Naya',
             'password' => bcrypt('password'),
             'email' => 'me@mail.dev',
             // 'admin' => 1,

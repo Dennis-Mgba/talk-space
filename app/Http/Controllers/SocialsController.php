@@ -27,6 +27,6 @@ class SocialsController extends Controller
             $user->save();  // save to the application database
         });
 
-        return redirect('/home');
+        return redirect('/forum');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Discussion;
+use App\Reply;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -40,5 +41,19 @@ class DiscussionsController extends Controller
     {
         // query the discussions table, where the slug get from the URL is identical to the slug passed and return it with the view
         return view('discussions.show')->with('discussion', Discussion::where('slug', $slug)->first());
+    }
+
+
+    public function reply($id)
+    {
+        $discussion = Discussion::find($id);
+        $reply = Reply::create([
+            'user_id' =>Auth::id(), // id of the authenticated user
+            'discussion_id' => $id,
+            'content' => request()->content
+        ]);
+
+        Session::flash('success', 'Discussion successfully created');
+        return redirect()->back();
     }
 }
