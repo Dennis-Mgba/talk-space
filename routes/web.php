@@ -48,7 +48,6 @@ Route::group(['middleware' => 'auth'], function(){  // create middleware route g
     Route::get('/discussion/{slug}', [
         'uses' => 'DiscussionsController@show',
         'as' => 'discussion'
-
     ]);
 
 });

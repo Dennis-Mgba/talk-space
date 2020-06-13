@@ -18,5 +18,13 @@ class UserstableSeeder extends Seeder
             'admin' => 1,
             'avatar' => asset('avatars/avatar.png') // this says, in the public directory search for the avatar folder and inside the avatar folder look for the avatar.png file.
         ]);
+
+        App\User::create([
+            'name' => 'Deni',
+            'password' => bcrypt('password'),
+            'email' => 'me@mail.dev',
+            // 'admin' => 1,
+            'avatar' => asset('avatars/avatar.png')
+        ]);
     }
 }
