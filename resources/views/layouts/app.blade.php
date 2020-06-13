@@ -86,7 +86,9 @@
                             @endforeach
                         </div>
                     </div>
-                </div>
+                </div><br><br>
+
+                <a href="{{ route('discussions.create') }}" type="button" name="button" class="form-control btn btn-primary">Create a new discussion</a>
             </div>
             <div class="col-md-9">
                 @yield('content')

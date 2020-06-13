@@ -19,6 +19,7 @@ class CreateDiscussionsTable extends Migration
             $table->integer('channel_id');    // store the id of the discussion channel
             $table->string('title');    // title of discussion
             $table->text('content');
+            $table->string('slug');
             $table->timestamps();
         });
     }

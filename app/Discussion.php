@@ -9,6 +9,7 @@ class Discussion extends Model
     protected $fillable = [
         'title',
         'content',
+        'slug',
         'user_id',
         'channel_id'
     ];
