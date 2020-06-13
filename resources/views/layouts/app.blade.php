@@ -85,7 +85,7 @@
                             @endforeach
                         </div>
                     </div>
-                </div><br><br>
+                </div>
 
                 <a href="{{ route('discussions.create') }}" type="button" name="button" class="form-control btn btn-primary">Create a new discussion</a>
             </div>

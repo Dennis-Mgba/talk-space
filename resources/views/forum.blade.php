@@ -5,11 +5,22 @@
     @foreach ($discussions as $discussion)
         <div class="panel panel-default">
             <div class="panel-heading">
-                <img src="{{ $discussion->user->avatar }}" alt="{{ $discussion->user->name }}" style="width:70px; height:70px; border-radius:50%;"> <!-- avatar of the person that created the post -->
+                Created by -
+                <img src="{{ $discussion->user->avatar }}" alt="{{ $discussion->user->name }}" style="width:30px; height:30px; border-radius:50%;"> <!-- avatar of the person that created the post -->
+                &nbsp;&nbsp;&nbsp;
+                <span>{{ $discussion->user->name }}</span>
+                <a href="{{ route('discussion', ['slug' => $discussion->slug]) }}" class="btn btn-info btn-xs pull-right">Veiw discussion</a>
             </div>
             <div class="panel-body">
-                {{ $discussion->content }}
+                <h4 class="text-center">{{ $discussion->title }}</h4>
+                <p class="text-center">{{ str_limit($discussion->content, 100) }}</p>  <!-- str_limit() limits that amount of character that will be dislayed -->
             </div>
+            <div class="panel-footer">
+                <p>
+                    {{ $discussion->replies->count() }} Replies
+                </p>
+            </div>
+
         </div>
     @endforeach
 
