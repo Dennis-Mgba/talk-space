@@ -12,11 +12,11 @@ class ChannelsTableSeeder extends Seeder
      */
     public function run()
     {
-        $channel1 = ['title' => 'Developers\' Learning habit'];
-        $channel2 = ['title' => 'Beginners\' Journey'];
-        $channel3 = ['title' => 'Mentorship'];
-        $channel4 = ['title' => 'Imposter Syndrome'];
-        $channel5 = ['title' => 'Tutorials'];
+        $channel1 = ['title' => 'Developers\' Learning habit', 'slug' => str_slug('Developers\' Learning habit')];
+        $channel2 = ['title' => 'Beginners\' Journey', 'slug' => str_slug('Beginners\' Journey')];
+        $channel3 = ['title' => 'Mentorship', 'slug' => str_slug('Mentorship')];
+        $channel4 = ['title' => 'Imposter Syndrome', 'slug' => str_slug('Imposter Syndrome')];
+        $channel5 = ['title' => 'Tutorials', 'slug' => str_slug('Tutorials')];
 
         Channel::create($channel1);
         Channel::create($channel2);
