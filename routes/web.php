@@ -36,6 +36,14 @@ Route::get('/{provider}/redirect', [
 ]);
 
 
+Route::get('/discussion/{slug}', [
+    'uses' => 'DiscussionsController@show',
+    'as' => 'discussion'
+]);
+
+
+
+// group of authenticated routes
 Route::group(['middleware' => 'auth'], function(){  // create middleware route group to authenticate the routes for our application
     Route::resource('channels', 'ChannelsController'); // this will automatically read the funetions in the ChannelsController and make avaiable the routes need
 
@@ -49,14 +57,19 @@ Route::group(['middleware' => 'auth'], function(){  // create middleware route g
         'as' => 'discussions.store'
     ]);
 
-    Route::get('/discussion/{slug}', [
-        'uses' => 'DiscussionsController@show',
-        'as' => 'discussion'
-    ]);
-
     Route::post('discussion/reply/{id}', [
         'uses' => 'DiscussionsController@reply',
         'as' => 'discussion.reply'
+    ]);
+
+    Route::get('/reply/like/{id}', [
+        'uses' => 'RepliesController@like',
+        'as' => 'reply.like'
+    ]);
+
+    Route::get('/reply/unlike/{id}', [
+        'uses' => 'RepliesController@unlike',
+        'as' => 'reply.unlike'
     ]);
 
 });

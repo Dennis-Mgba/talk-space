@@ -28,7 +28,11 @@
                 <span><b>{{ $reply->user->name }},</b> {{ $reply->created_at->diffForHumans() }}</span>
 
                 <span class="pull-right" style="margin-right: 50px;">
-                    Like
+                    @if ($reply->is_liked_by_auth_user()) <!-- call the method on the reply class -->
+                        <a href="{{ route('reply.unlike', ['id' => $reply->id]) }}" class="btn btn-xs btn-danger">Unlike <span class="badge">{{ $reply->likes->count() }}</span> </a>
+                    @else
+                        <a href="{{ route('reply.like', ['id' => $reply->id]) }}" class="btn btn-xs btn-success">Like <span class="badge">{{ $reply->likes->count() }}</span> </a>
+                    @endif
                 </span>
             </div>
         </div>
