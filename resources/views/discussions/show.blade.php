@@ -51,7 +51,7 @@
                 <form class="" action="{{ route('discussion.reply', ['id' => $discussion->id]) }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <textarea name="content" id='reply' rows="3" cols="110" style="border-radius: 8px;"></textarea>
+                        <textarea name="content" id='reply' rows="5" cols="110" style="border-radius: 8px;"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-xs pull-right" style="border-radius: 7px;">Leave a reply</button>
                 </form>
