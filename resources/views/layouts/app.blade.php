@@ -27,7 +27,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/forum') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -72,6 +72,7 @@
 
         <div class="container">
             <div class="col-md-3">
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         CHANNELS
@@ -80,17 +81,25 @@
                         <div class="list-group">
                             @foreach ($channels as $channel)
                                 <li class="list-group-item">
-                                    {{ $channel->title }}
+                                    <a href="{{ route('channel', ['slug' => $channel->slug]) }}" style="text-decoration: none;">{{ $channel->title }}</a>
                                 </li>
                             @endforeach
+                                <a href="{{ route('channels.create') }}" class="btn btn-xs btn-primary pull-right" style="margin-top: 30px;">Add +</a>
                         </div>
                     </div>
                 </div>
 
                 <a href="{{ route('discussions.create') }}" type="button" name="button" class="form-control btn btn-primary">Create a new discussion</a>
+
             </div>
             <div class="col-md-9">
                 @yield('content')
+
+                {{-- <ul class="">
+                    <li class="" style="list-style-type: none; margin: 20px 0 0 -30px">
+                        <a href="/forum" style="text-decoration: none;">Go back to home</a>
+                    </li>
+                </ul> --}}
             </div>
         </div>
     </div>

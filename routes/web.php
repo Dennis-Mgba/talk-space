@@ -41,13 +41,18 @@ Route::get('/discussion/{slug}', [
     'as' => 'discussion'
 ]);
 
+Route::get('/channel/{slug}', [
+    'uses' => 'ForumsController@channel',
+    'as' => 'channel'
+]);
+
 
 
 // group of authenticated routes
 Route::group(['middleware' => 'auth'], function(){  // create middleware route group to authenticate the routes for our application
     Route::resource('channels', 'ChannelsController'); // this will automatically read the funetions in the ChannelsController and make avaiable the routes need
 
-    Route::get('discussion/create', [
+    Route::get('discussion/create/new', [
         'uses' => 'DiscussionsController@create',
         'as' => 'discussions.create'
     ]);

@@ -12,9 +12,11 @@
             <p class="text-center">{{ $discussion->content }}</p>
         </div>
         <div class="panel-footer">
-            <p>
+            <span>
                 {{ $discussion->replies->count() }} Replies
-            </p>
+            </span>
+
+            <a href="{{ route('channel', ['slug' => $discussion->channel->slug]) }}" class="pull-right btn btn-default btn-xs">{{ $discussion->channel->title }}</a>
         </div>
     </div>
 
@@ -40,13 +42,19 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <form class="" action="{{ route('discussion.reply', ['id' => $discussion->id]) }}" method="post">
-                {{ csrf_field() }}
-                <div class="form-group">
-                    <textarea name="content" id='reply' rows="3" cols="110" style="border-radius: 8px;"></textarea>
+            @if (Auth::check())
+                <form class="" action="{{ route('discussion.reply', ['id' => $discussion->id]) }}" method="post">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <textarea name="content" id='reply' rows="3" cols="110" style="border-radius: 8px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-xs pull-right" style="border-radius: 7px;">Leave a reply</button>
+                </form>
+            @else
+                <div class="text-center">
+                    <h2>Sign in to leave a reply</h2>
                 </div>
-                <button type="submit" class="btn btn-primary btn-xs pull-right" style="border-radius: 7px;">Leave a reply</button>
-            </form>
+            @endif
         </div>
     </div>
 

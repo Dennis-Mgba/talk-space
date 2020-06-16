@@ -35,18 +35,8 @@
                 position: relative;
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
             .content {
                 text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
             }
 
             .links > a {
@@ -62,30 +52,53 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .button {
+                background-color: #008CBA;
+                border: none;
+                border-radius: 7px;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                margin: 4px 2px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+                font-size: 30px;
+                color: #fff;
+            }
+
+            .button:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+
+
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
-                <div class="title m-b-md">
-                    Talk Space
+                <div class="m-b-md">
+                    <a href="/forum"><button class="button">Talk Space</button></a>
                 </div>
 
                 <div class="links">
                     <!-- This authentiate a user if they want to login in using github or facebook -->
                     <a href="{{ route('social.auth', ['provider' => 'github']) }}">GitHub</a>
                     <a href="{{ route('social.auth', ['provider' => 'facebook']) }}">Facebook</a>
+                    <a href="/login">Email login</a>
+                </div>
+                <div style="margin-top: 50px;">
+                    @if (Route::has('login'))
+                        <div class="links">
+                            @auth
+                                {{-- <a href="{{ url('/home') }}">Home</a> --}}
+                            @else
+                                {{-- <a href="{{ route('login') }}">Login</a> --}}
+                                <a href="{{ route('register') }}">Click here to register</a>
+                            @endauth
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
