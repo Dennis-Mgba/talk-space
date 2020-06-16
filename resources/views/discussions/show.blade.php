@@ -6,6 +6,11 @@
         <div class="panel-heading">
             Created by -
             <span><b>{{ $discussion->user->name }},</b> {{ $discussion->created_at->diffForHumans() }}</span>
+            @if ($discussion->is_being_watched_by_auth_user())
+                <a href="{{ route('discussion.unwatch', ['id' => $discussion->id]) }}" class="btn btn-default pull-right btn-xs">Unwatch</a>
+            @else
+                <a href="{{ route('discussion.watch', ['id' => $discussion->id]) }}" class="btn btn-default pull-right btn-xs">Watch</a>
+            @endif
         </div>
         <div class="panel-body">
             <h4 class="text-center"><b>{{ $discussion->title }}</b></h4>

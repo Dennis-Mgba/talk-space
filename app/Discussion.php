@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Discussion extends Model
@@ -29,4 +30,27 @@ class Discussion extends Model
     {
         return $this->hasMany('App\Reply');
     }
+
+    public function watchers()
+    {
+        return $this->hasMany('App\Watcher');
+    }
+
+
+    public function  is_being_watched_by_auth_user()
+    {
+        $id = Auth::id();
+        $all_watchers_ids = array();
+
+        foreach($this->watchers as $watching_individuals):
+            array_push($all_watchers_ids, $watching_individuals->user_id);
+        endforeach;
+
+        if (in_array($id, $all_watchers_ids)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 }

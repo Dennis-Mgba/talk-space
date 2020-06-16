@@ -77,4 +77,14 @@ Route::group(['middleware' => 'auth'], function(){  // create middleware route g
         'as' => 'reply.unlike'
     ]);
 
+    Route::get('/discussion/watch/{id}', [
+        'uses' => 'WatchersController@watch',
+        'as' => 'discussion.watch'
+    ]);
+
+    Route::get('/discussion/unwatch/{id}', [
+        'uses' => 'WatchersController@unwatch',
+        'as' => 'discussion.unwatch'
+    ]);
+
 });
