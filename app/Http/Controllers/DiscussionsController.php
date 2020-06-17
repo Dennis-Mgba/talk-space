@@ -42,7 +42,11 @@ class DiscussionsController extends Controller
     public function show($slug)
     {
         // query the discussions table, where the slug get from the URL is identical to the slug passed and return it with the view
-        return view('discussions.show')->with('discussion', Discussion::where('slug', $slug)->first());
+        $discussion = Discussion::where('slug', $slug)->first();
+        $best_answer = $discussion->replies()->where('best_answer', 1)->first();    // get the reply where the best answer table is true, ie equal to 1
+
+        return view('discussions.show')->with('discussion', $discussion)
+                                       ->with('best_answer', $best_answer);         // also pass the best anwser to the view
     }
 
 

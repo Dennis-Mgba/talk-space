@@ -87,4 +87,9 @@ Route::group(['middleware' => 'auth'], function(){  // create middleware route g
         'as' => 'discussion.unwatch'
     ]);
 
+    Route::get('/discussion/best/reply/{id}', [
+        'uses' => 'RepliesController@best_answer',
+        'as' => 'reply.best.answer'
+    ]);
+
 });

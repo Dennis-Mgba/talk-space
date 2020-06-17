@@ -12,9 +12,27 @@
                 <a href="{{ route('discussion.watch', ['id' => $discussion->id]) }}" class="btn btn-default pull-right btn-xs">Watch</a>
             @endif
         </div>
+
         <div class="panel-body">
             <h4 class="text-center"><b>{{ $discussion->title }}</b></h4>
-            <p class="text-center">{{ $discussion->content }}</p>
+            <p class="text-center">{{ $discussion->content }}</p><hr>
+
+            @if ($best_answer)
+                <div class="text-center" style="padding: 40px;">
+                    <h5 class="text-center"> <b>Best Answer</b> </h5>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <img src="{{ $best_answer->user->avatar }}" alt="" style="width: 25px; height: 25px;">
+                            &nbsp;&nbsp;&nbsp;
+                            <span>{{ $best_answer->user->name }}</span>
+                        </div>
+                        <div class="panel-body">
+                            {{ $best_answer->content }}
+                        </div>
+                    </div>
+                </div>
+            @endif
+
         </div>
         <div class="panel-footer">
             <span>
@@ -40,11 +58,17 @@
                     @else
                         <a href="{{ route('reply.like', ['id' => $reply->id]) }}" class="btn btn-xs btn-success">Like <span class="badge">{{ $reply->likes->count() }}</span> </a>
                     @endif
+                    &nbsp;&nbsp;&nbsp;
+
+                    @if (!$best_answer)
+                        <a href="{{ route('reply.best.answer', ['id' => $reply->id]) }}" class="btn btn-info btn-xs">Mark as best answer</a>
+                    @endif
                 </span>
             </div>
         </div>
     @endforeach
 
+    <!-- leave a reply form -->
     <div class="panel panel-default">
         <div class="panel-body">
             @if (Auth::check())

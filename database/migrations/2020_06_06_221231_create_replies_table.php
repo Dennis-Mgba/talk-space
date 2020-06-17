@@ -17,6 +17,7 @@ class CreateRepliesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned(); // id of the user sending the reply
             $table->integer('discussion_id')->unsigned();   //store the id of the discussion that the reply belongs to
+            $table->boolean('best_answer')->default(0);
             $table->text('content');
             $table->timestamps();
         });

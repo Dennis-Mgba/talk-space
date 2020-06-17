@@ -20,6 +20,7 @@ class RepliesController extends Controller
         return redirect()->back();
     }
 
+
     public function unlike($id)
     {
         // find the reply that was liked and the authenticated user that liked the reply then  delete input
@@ -28,4 +29,16 @@ class RepliesController extends Controller
         Session::flash('success', 'Unliked');
         return redirect()->back();
     }
+
+
+    public function best_answer($id)
+    {
+        $reply = Reply::find($id);
+        $reply->best_answer = 1;
+        $reply->save();
+
+        Session::flash('success', 'Reply has ben marked as the best answer');
+        return redirect()->back();
+    }
+
 }

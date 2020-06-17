@@ -84,7 +84,11 @@
                                     <a href="{{ route('channel', ['slug' => $channel->slug]) }}" style="text-decoration: none;">{{ $channel->title }}</a>
                                 </li>
                             @endforeach
-                                <a href="{{ route('channels.create') }}" class="btn btn-xs btn-primary pull-right" style="margin-top: 30px;">Add +</a>
+
+                                <span>
+                                    {{-- <a href="{{ route('channels.index') }}" class="btn btn-xs btn-default" style="margin-top: 30px;">channel dashboard</a> --}}
+                                    <a href="{{ route('channels.create') }}" class="btn btn-xs btn-primary pull-right" style="margin-top: 30px;">Add +</a>
+                                </span>
                         </div>
                     </div>
                 </div>
