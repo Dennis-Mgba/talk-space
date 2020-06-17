@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Talk-Space') }}</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- toastr styles -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -70,6 +72,17 @@
             </div>
         </nav>
 
+            @if ($errors->count() > 0)
+                <ul class="list-group-item"  style="background-color: #ffb3b3; list-style: none;">
+                    {{-- @foreach ($errors->all() as $error) --}}
+                        <li class=" text-danger text-center">
+                            {{-- {{ $error }} --}}
+                            {{ 'Please fill all fields' }}
+                        </li>
+                    {{-- @endforeach --}}
+                </ul><br><br>
+            @endif
+
         <div class="container">
             <div class="col-md-3">
 
@@ -110,5 +123,18 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <!-- toastr js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    {{--check for presence of a session in our application, so that we can use the toastr--}}
+    <script>
+      @if(Session::has('success')) 
+        toastr.success("{{ Session::get('success') }}");
+      @elseif (Session::has('info'))
+        toastr.info("{{ Session::get('info') }}");
+      @elseif (Session::has('warning'))
+        toastr.warning("{{ Session::get('warning') }}");
+      @endif
+    </script>
 </body>
 </html>

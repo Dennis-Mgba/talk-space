@@ -16,7 +16,7 @@ class RepliesController extends Controller
             'user_id' => Auth::id()
         ]);
 
-        Session::flash('success', 'Liked');
+        Session::flash('success', 'Reply Liked');
         return redirect()->back();
     }
 
@@ -26,7 +26,7 @@ class RepliesController extends Controller
         // find the reply that was liked and the authenticated user that liked the reply then  delete input
         $like = Like::where('reply_id', $id)->where('user_id', Auth::id())->first();
         $like->delete();
-        Session::flash('success', 'Unliked');
+        Session::flash('success', 'Reply Unliked');
         return redirect()->back();
     }
 
@@ -37,7 +37,7 @@ class RepliesController extends Controller
         $reply->best_answer = 1;
         $reply->save();
 
-        Session::flash('success', 'Reply has ben marked as the best answer');
+        Session::flash('success', 'Reply has been marked as the best answer');
         return redirect()->back();
     }
 

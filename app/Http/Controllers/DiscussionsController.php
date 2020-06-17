@@ -67,7 +67,7 @@ class DiscussionsController extends Controller
         endforeach;
         Notification::send($all_watchers, new \App\Notifications\NewReplyAdded($discussion)); // pass in the discussion as a parameter
 
-        Session::flash('success', 'Discussion successfully created');
+        Session::flash('success', 'Reply successfully created');
         return redirect()->back();
     }
 }

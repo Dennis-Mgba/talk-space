@@ -61,7 +61,9 @@
                     &nbsp;&nbsp;&nbsp;
 
                     @if (!$best_answer)
-                        <a href="{{ route('reply.best.answer', ['id' => $reply->id]) }}" class="btn btn-info btn-xs">Mark as best answer</a>
+                        @if (Auth::id() == $discussion->user->id) <!-- check if the authenticated user is the one that created the discussion -->
+                            <a href="{{ route('reply.best.answer', ['id' => $reply->id]) }}" class="btn btn-info btn-xs">Mark as best answer</a>
+                        @endif
                     @endif
                 </span>
             </div>
