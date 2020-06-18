@@ -42,7 +42,7 @@ class Discussion extends Model
         $id = Auth::id();
         $all_watchers_ids = array();
 
-        foreach($this->watchers as $watching_individuals):
+        foreach($this->watchers as $watching_individuals):                      // remember that we referencing the watchers table relationship method
             array_push($all_watchers_ids, $watching_individuals->user_id);
         endforeach;
 
@@ -52,5 +52,20 @@ class Discussion extends Model
             return false;
         }
     }
-    
+
+
+    public function has_best_answer()
+    {
+        $result = false;                        // boolean variable
+        foreach($this->replies as $reply)      // remember that we referencing the replies table relationship method
+        {
+            if ($reply->best_answer) {            // accessing the best_answer column from the replies table
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;                     // if the result returned is true that makes the has_best_answer function true
+    }
+
 }
