@@ -106,10 +106,20 @@
                     </div>
                 </div>
 
-                <div class="list-group">
-                    <li class="list-group-item">
-                        <a href="/forum?filter=me" style="text-decoration: none;">Participated discussions</a>
-                    </li>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <li class="list-group-item">
+                                <a href="/forum?filter=me" style="text-decoration: none;">Participated Discussions</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/forum?filter=solved" style="text-decoration: none;">Answered Discussions</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/forum?filter=unsolved" style="text-decoration: none;">Unanswered Discussions</a>
+                            </li>
+                        </div>
+                    </div>
                 </div>
 
                 <a href="{{ route('discussions.create') }}" type="button" name="button" class="form-control btn btn-primary">Create a new discussion</a>

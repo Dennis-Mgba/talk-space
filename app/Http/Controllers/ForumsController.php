@@ -7,6 +7,7 @@ use App\Channel;
 use Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class ForumsController extends Controller
 {
@@ -15,15 +16,39 @@ class ForumsController extends Controller
         // $discussions = Discussion::orderBy('created_at', 'desc')->paginate(3);
         switch (request('filter')) {
             case 'me':
-                // query the discussions table where discussions is been created my a user
                 $discussions = Discussion::where('user_id', Auth::id())->paginate(3);
                 break;
+
+            case 'solved':
+                $answered_discussions = array();
+                foreach(Discussion::all() as $d)
+                {
+                    if($d->has_best_answer())
+                    {
+                        array_push($answered_discussions, $d);
+                    }
+                }
+                $discussions = new Paginator($answered_discussions, 3);
+                break;
+
+                case 'unsolved':
+                    $unanswered_discussions = array();
+                    foreach(Discussion::all() as $d)
+                    {
+                        if(!$d->has_best_answer())
+                        {
+                            array_push($unanswered_discussions, $d);
+                        }
+                    }
+                    $discussions = new Paginator($unanswered_discussions, 3);
+                    break;
+
             default:
                 $discussions = Discussion::orderBy('created_at', 'desc')->paginate(3);
                 break;
         }
 
-        return view('forum', ['discussions' => $discussions]);  // in the view() method, the first parameter is the view page, the secod param in an array of the data fetched with the variable we are passing it into
+        return view('forum', ['discussions' => $discussions]);
     }
 
 
