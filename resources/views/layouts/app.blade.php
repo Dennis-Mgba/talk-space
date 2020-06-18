@@ -106,6 +106,12 @@
                     </div>
                 </div>
 
+                <div class="list-group">
+                    <li class="list-group-item">
+                        <a href="/forum?filter=me" style="text-decoration: none;">Participated discussions</a>
+                    </li>
+                </div>
+
                 <a href="{{ route('discussions.create') }}" type="button" name="button" class="form-control btn btn-primary">Create a new discussion</a>
 
             </div>
@@ -128,7 +134,7 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     {{--check for presence of a session in our application, so that we can use the toastr--}}
     <script>
-      @if(Session::has('success')) 
+      @if(Session::has('success'))
         toastr.success("{{ Session::get('success') }}");
       @elseif (Session::has('info'))
         toastr.info("{{ Session::get('info') }}");
