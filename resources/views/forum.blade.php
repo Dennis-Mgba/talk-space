@@ -16,6 +16,7 @@
                 @else
                     <span class="btn btn-success btn-xs">open</span>
                 @endif
+                
                 <a href="{{ route('discussion', ['slug' => $discussion->slug]) }}" class="btn btn-info btn-xs pull-right">Veiw discussion</a>
             </div>
             <div class="panel-body">

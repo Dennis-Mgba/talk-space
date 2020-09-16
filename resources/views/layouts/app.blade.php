@@ -87,6 +87,26 @@
             <div class="col-md-3">
 
                 <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <li class="list-group-item">
+                                <a href="/forum?filter=me" style="text-decoration: none;">Participated Discussions</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/forum?filter=solved" style="text-decoration: none;">Answered Discussions</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/forum?filter=unsolved" style="text-decoration: none;">Unanswered Discussions</a>
+                            </li>
+                        </div>
+
+                        <span>
+                            <a href="{{ url('/forum') }}" style="margin: 30px 0 0 15px;">view all discussions</a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         CHANNELS
                     </div>
@@ -102,22 +122,6 @@
                                     {{-- <a href="{{ route('channels.index') }}" class="btn btn-xs btn-default" style="margin-top: 30px;">channel dashboard</a> --}}
                                     <a href="{{ route('channels.create') }}" class="btn btn-xs btn-primary pull-right" style="margin-top: 30px;">Add +</a>
                                 </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="list-group">
-                            <li class="list-group-item">
-                                <a href="/forum?filter=me" style="text-decoration: none;">Participated Discussions</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="/forum?filter=solved" style="text-decoration: none;">Answered Discussions</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="/forum?filter=unsolved" style="text-decoration: none;">Unanswered Discussions</a>
-                            </li>
                         </div>
                     </div>
                 </div>

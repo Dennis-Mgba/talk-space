@@ -35,7 +35,9 @@ class DiscussionsController extends Controller
         ]);
 
         Session::flash('success', 'Discussion successfully created');
-        return redirect()->route('discussion', ['slug' => $discussion->slug ]);
+        return redirect()->route('discussion', [
+            'slug' => $discussion->slug
+        ]);
     }
 
 
@@ -65,9 +67,39 @@ class DiscussionsController extends Controller
         foreach($discussion->watchers as $watcher):
             array_push($all_watchers, User::find($watcher->user_id));
         endforeach;
+
+        // send email notification
         Notification::send($all_watchers, new \App\Notifications\NewReplyAdded($discussion)); // pass in the discussion as a parameter
 
         Session::flash('success', 'Reply successfully created');
         return redirect()->back();
+    }
+
+
+    public function edit($slug)
+    {
+        // query the discussion table where the slug column has a value that is the same as the $slug paramenter passed from the Url
+        $discussion = Discussion::where('slug', $slug)->first();
+        return view('discussions.edit', [
+            'discussion' => $discussion
+        ]);
+    }
+
+
+    public function update($id)
+    {
+        // validate the request
+        $this->validate(request(), [
+            'content' => 'required'
+        ]);
+
+        $discussion = Discussion::find($id);
+        $discussion->content = request()->content;
+        $discussion->save();
+
+        Session::flash('success', 'Successfully created');
+        return redirect()->route('discussion', [
+            'slug' => $discussion->slug
+        ]);
     }
 }

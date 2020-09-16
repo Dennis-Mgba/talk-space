@@ -33,6 +33,14 @@
                 </div>
             @endif
 
+        @if (Auth::id() == $discussion->user->id)
+            @if (!$discussion->has_best_answer())
+                <span>
+                    <a href="{{ route('discussion.edit', ['slug' => $discussion->slug] )}}">Edit</a>
+                </span>
+            @endif
+        @endif
+
         </div>
         <div class="panel-footer">
             <span>
@@ -63,6 +71,12 @@
                     @if (!$best_answer)
                         @if (Auth::id() == $discussion->user->id) <!-- check if the authenticated user is the one that created the discussion -->
                             <a href="{{ route('reply.best.answer', ['id' => $reply->id]) }}" class="btn btn-info btn-xs">Mark as best answer</a>
+                        @endif
+                    @endif
+
+                    @if (Auth::id() == $reply->user->id) <!-- check if the authenticated user is the one that created the reply  -->
+                        @if (!$reply->best_answer) <!-- check if the reply is not selected as the best answer -->
+                            <a href="{{ route('reply.edit', ['id' => $reply->id]) }}">Edit</a>
                         @endif
                     @endif
                 </span>

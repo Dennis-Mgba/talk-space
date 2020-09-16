@@ -17,6 +17,7 @@
                 <label for="channel">Select Channel</label>
                 <select class="form-control" name="channel_id" id="channel_id">
                 <!-- remember we already have the channel variable available across all file in our application -->
+                <option></option>
                 @foreach ($channels as $channel)
                     <option value="{{ $channel->id }}">{{ $channel->title }}</option>
                 @endforeach
