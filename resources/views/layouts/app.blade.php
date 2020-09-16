@@ -101,7 +101,7 @@
                         </div>
 
                         <span>
-                            <a href="{{ url('/forum') }}" style="margin: 30px 0 0 15px;">view all discussions</a>
+                            <a href="{{ url('/forum') }}" style="margin: 30px 0 0 15px;">All discussions</a>
                         </span>
                     </div>
                 </div>
@@ -118,10 +118,14 @@
                                 </li>
                             @endforeach
 
-                                <span>
-                                    {{-- <a href="{{ route('channels.index') }}" class="btn btn-xs btn-default" style="margin-top: 30px;">channel dashboard</a> --}}
-                                    <a href="{{ route('channels.create') }}" class="btn btn-xs btn-primary pull-right" style="margin-top: 30px;">Add +</a>
-                                </span>
+                            @if (Auth::check()) <!-- check if it's an authenticated us -->
+                                @if (Auth::user()->admin)
+                                    <span>
+                                        <a href="{{ route('channels.index') }}" class="btn btn-xs btn-info" style="margin-top: 30px;">channel dashboard</a>
+                                        <a href="{{ route('channels.create') }}" class="btn btn-xs btn-primary pull-right" style="margin-top: 30px;">Add +</a>
+                                    </span>
+                                @endif
+                            @endif
                         </div>
                     </div>
                 </div>
