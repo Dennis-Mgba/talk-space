@@ -15,7 +15,12 @@
 
         <div class="panel-body">
             <h4 class="text-center"><b>{{ $discussion->title }}</b></h4>
-            <p class="text-center">{{ $discussion->content }}</p><hr>
+            <p class="text-center">
+                {!! Markdown::convertToHtml( $discussion->content ) !!}
+                {{-- @markdown
+                    {!! $discussion->content  !!}
+                @endmarkdown --}}
+            </p><hr>
 
             @if ($best_answer)
                 <div class="text-center" style="padding: 40px;">
@@ -27,7 +32,7 @@
                             <span>{{ $best_answer->user->name }}</span>
                         </div>
                         <div class="panel-body">
-                            {{ $best_answer->content }}
+                            {!! Markdown::convertToHtml( $best_answer->content ) !!}
                         </div>
                     </div>
                 </div>
@@ -55,7 +60,9 @@
     @foreach ($discussion->replies as $reply)
         <div class="panel panel-default" style="border-radius: 30px;">
             <div class="panel-body">
-                <p class="">{{ $reply->content }}</p><hr>
+                <p class="">
+                    {!! Markdown::convertToHtml( $reply->content ) !!}
+                </p><hr>
                 <img src="{{ $reply->user->avatar }}" alt="{{ $reply->user->name }}" style="width:25px; height:25px; border-radius:30px;"> <!-- avatar of the person that replied -->
                 &nbsp;&nbsp;&nbsp;
                 <span><b>{{ $reply->user->name }},</b> {{ $reply->created_at->diffForHumans() }}</span>

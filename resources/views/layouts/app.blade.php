@@ -13,6 +13,9 @@
     <!-- toastr styles -->
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
+    <!-- markdown formater -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/atelier-sulphurpool-light.min.css" integrity="sha512-TFvj/Rf41RICct8aYgH8x3P4qjJwVBiHk6yCnBorjtXQEwo7XuvcetwzkdJzhYD8wjsWMYucBcVWKX7JhipNgQ==" crossorigin="anonymous" />
+
 </head>
 <body>
     <div id="app">
@@ -160,5 +163,9 @@
         toastr.warning("{{ Session::get('warning') }}");
       @endif
     </script>
+
+    <!--highlight mark down formater-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
